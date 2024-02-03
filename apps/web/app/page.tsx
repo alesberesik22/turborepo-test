@@ -3,6 +3,7 @@ import { Card } from "@repo/ui/card";
 import { Code } from "@repo/ui/code";
 import styles from "./page.module.css";
 import { Button } from "@repo/ui/button";
+import {Typography} from "@mui/material";
 
 function Gradient({
   conic,
@@ -59,6 +60,7 @@ export default function Page(): JSX.Element {
           examples/basic&nbsp;
           <Code className={styles.code}>web</Code>
         </p>
+        <Typography>TEST MUI</Typography>
         <div>
           <a
             href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
