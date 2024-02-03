@@ -1,4 +1,4 @@
-Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
 name: Build and deploy Node.js app to Azure Web App - Turborepo
@@ -24,8 +24,9 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build-web --if-present
+          npm run build --if-present
           npm run test --if-present
+
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -52,13 +53,13 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
+      
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9888F40901E44245A5546100BCC11231 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_92FD4A872CAB452D9DB6B2A1444F098F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DA7EB96BA9645F4BD3CC31048D22B6E }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D66BA6B9494E449E9CEB9CCC721C8395 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_5407A22A722C4AB2B3BCC82B0A923E60 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4AF054E12CBB4870B6504CA4EBB48DFF }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -67,3 +68,4 @@ jobs:
           app-name: 'Turborepo'
           slot-name: 'Production'
           package: .
+          
