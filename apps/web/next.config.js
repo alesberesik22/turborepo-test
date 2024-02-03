@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   transpilePackages: ["@repo/ui"],
-  output: 'export',
-  images: {
-    unoptimized: true
-  }
+  reactStrictMode: true,
+  output: "standalone",
 };
