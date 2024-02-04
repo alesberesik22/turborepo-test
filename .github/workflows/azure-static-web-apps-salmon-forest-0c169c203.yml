@@ -15,26 +15,29 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: true
-          lfs: false
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
+      - run: |
+          npm install turbo -g
+          npm i
+          npm run build-web
+          cp -r apps/web/.next/standalone/apps/web/. apps/web/.next/standalone
+          cp apps/web/staticwebapp.config.json apps/web/.next
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_FOREST_0C169C203 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_WAVE_0A47E7A0F }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "apps/web" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "out" # Built app content directory
-          app_build_command: "npm run build-web" # Build command
-          app_start_command: "npm run start-web" # Start command
+          skip_app_build: true
+          app_location: "apps/web"
+          api_location: ""
+          output_location: ""
+
+          ###### End of Repository/Build Configurations ######
+
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest

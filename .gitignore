@@ -5,6 +5,12 @@ node_modules
 .pnp
 .pnp.js
 
+build-next-static
+build-storybook-static
+compiled
+
+
+
 # Local env files
 .env
 .env.local
@@ -26,6 +32,7 @@ coverage
 out/
 build
 dist
+
 
 
 # Debug

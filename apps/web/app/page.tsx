@@ -1,9 +1,8 @@
 import Image from "next/image";
-import { Card } from "@repo/ui/card";
-import { Code } from "@repo/ui/code";
 import styles from "./page.module.css";
-import { Button } from "@repo/ui/button";
-import {Typography} from "@mui/material";
+import {Code, Button, Card} from "@repo/ui/src";
+import React from "react";
+import { Typography } from "@mui/material";
 
 function Gradient({
   conic,
@@ -60,21 +59,22 @@ export default function Page(): JSX.Element {
           examples/basic&nbsp;
           <Code className={styles.code}>web</Code>
         </p>
-        <Typography>TEST MUI</Typography>
+        <Typography>Test 1</Typography>
+        <p>Test 2</p>
         <div>
           <a
-            href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
-            rel="noopener noreferrer"
-            target="_blank"
+              href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
+              rel="noopener noreferrer"
+              target="_blank"
           >
             By{" "}
             <Image
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              height={24}
-              priority
-              src="/vercel.svg"
-              width={100}
+                alt="Vercel Logo"
+                className={styles.vercelLogo}
+                height={24}
+                priority
+                src="/vercel.svg"
+                width={100}
             />
           </a>
         </div>
