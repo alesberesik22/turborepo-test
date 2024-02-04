@@ -4,10 +4,16 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", "build-next-static/**"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["build"]
+    },
+    "tsc": {
+      "dependsOn": ["build"]
+    },
+    "update-dependencies": {
+      "cache": false
     },
     "dev": {
       "cache": false,

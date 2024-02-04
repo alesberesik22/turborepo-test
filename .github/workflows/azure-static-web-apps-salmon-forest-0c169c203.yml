@@ -15,27 +15,26 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: |
-          npm install turbo -g
-          npm i
-          npm run build-web
-          cp -r apps/web/.next/standalone/apps/web/. apps/web/.next/standalone
-          cp apps/web/staticwebapp.config.json apps/web/.next
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
+        env:
+          PRE_BUILD_COMMAND: npm install
+          CUSTOM_BUILD_COMMAND: npm run build-web && cp -r .next/standalone/apps/web/. .next/standalone
+          VERBOSE: true
+          # API_UPLOAD_ENDPOINT: ${{ secrets.API_UPLOAD_ENDPOINT}}
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_FOREST_0C169C203 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          skip_app_build: true
-          app_location: "apps/web"
-          api_location: ""
-          output_location: ""
-
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "/apps/web" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
