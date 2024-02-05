@@ -18,24 +18,23 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-          lfs: false
-
+      - run: |
+          npm install turbo -g
+          npm i
+          turbo run build --filter=web
+          cp -r .next/standalone/apps/web/. .next/standalone
       - name: Build And Deploy
         id: builddeploy
-        run: |
-          npm install turbo -g
-          npm install
-          npm run build-web
-        env:
-          PRE_BUILD_COMMAND: npm install
-          CUSTOM_BUILD_COMMAND: npm run build-web && cp -r .next/standalone/apps/web/. .next/standalone
-          VERBOSE: true
+        uses: Azure/static-web-apps-deploy@v1
+        with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_FOREST_0C169C203 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "apps/web"
-          api_location: "" # Api source code path - optional
-          output_location: "" # Built app content directory - optional
+          skip_app_build: true
+          app_location: "apps/web/.next"
+          api_location: ""
+          output_location: ""
+
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
