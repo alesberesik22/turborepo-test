@@ -22,6 +22,7 @@ jobs:
           npm install turbo -g
           npm i
           turbo run build --filter=web
+          mkdir -p .next/standalone
           cp -r apps/web/.next/standalone/apps/web/.next/. .next/standalone
       - name: Build And Deploy
         id: builddeploy
