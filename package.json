@@ -9,7 +9,7 @@
     "lint-staged-husky": "lint-staged",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "dev-web": "turbo run dev --filter=web",
-    "build-web": "turbo run build --filter=web",
+    "build-web": "turbo run build --filter=web && next export",
     "start-web": "turbo run start --filter=web",
     "clean": "npm exec --workspaces -- shx rm -rf node_modules .next .turbo coverage dist compiled build-next-static build-storybook-static && shx rm -rf node_modules",
     "remove-turbo-cache": "shx rm -rf ./node_modules/.cache/turbo",

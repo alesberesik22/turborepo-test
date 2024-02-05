@@ -2,5 +2,6 @@
 module.exports = {
   transpilePackages: ["@repo/ui"],
   reactStrictMode: true,
-  output: "standalone",
+  output: "export",
+
 };
