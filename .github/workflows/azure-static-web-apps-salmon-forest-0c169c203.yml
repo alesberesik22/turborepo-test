@@ -23,6 +23,8 @@ jobs:
       - name: Build And Deploy
         id: builddeploy
         run: |
+          npm install turbo -g
+          npm install
           npm run build-web
         env:
           PRE_BUILD_COMMAND: npm install
